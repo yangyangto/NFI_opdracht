@@ -5,6 +5,7 @@ services:
     image: backend_nfi
     volumes:
       - ./app:/dna_profiling/app
+      - .flake8:/dna_profiling/.flake8
     working_dir: /dna_profiling
     command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
     ports:

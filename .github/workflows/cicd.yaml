@@ -32,10 +32,18 @@ jobs:
         continue-on-error: true
         run: flake8 .
       - name: Test with pytest
-        run: pytest --junitxml=junit/test-results.xml
+        run: pytest --html=pytest-results/report.html
       - name: Upload pytest test results
         uses: actions/upload-artifact@v4
         with:
           name: pytest-results
-          path: junit/test-results.xml
+          path: pytest-results
+        if: ${{ always() }}
+      - name: Run python profiler
+        run: pyinstrument -o profile.html -m pytest
+      - name: Upload pyinstrument profile
+        uses: actions/upload-artifact@v4
+        with:
+          name: pyinstrument-profile
+          path: profile.html
         if: ${{ always() }}
