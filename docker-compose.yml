@@ -7,6 +7,7 @@ services:
       - ./app:/dna_profiling/app
       - .flake8:/dna_profiling/.flake8
     working_dir: /dna_profiling
+    # Dit zorgt ervoor dat de app herlaadt bij verandering aan de code
     command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
     ports:
       - '80:80'

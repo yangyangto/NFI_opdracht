@@ -5,13 +5,14 @@ from app.main import app
 client = TestClient(app)
 
 
-def test_read_root():
+def test_get_root():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"Let's": "Start DNA Profiling"}
 
 
 def test_match_dna_sequenties(dna_spoor_seq, dna_profiel_seq_passend):
+    """Test de response als DNA spoor matcht met profiel"""
     response = client.get(
         "/dna_profiling",
         params={
@@ -27,7 +28,8 @@ def test_match_dna_sequenties(dna_spoor_seq, dna_profiel_seq_passend):
     }
 
 
-def test_no_match_dna_profiles(dna_spoor_seq, dna_profiel_seq_niet_passend):
+def test_geen_match_dna_profiles(dna_spoor_seq, dna_profiel_seq_niet_passend):
+    """Test de response als DNA spoor niet matcht met profiel"""
     response = client.get(
         "/dna_profiling",
         params={
@@ -43,7 +45,8 @@ def test_no_match_dna_profiles(dna_spoor_seq, dna_profiel_seq_niet_passend):
     }
 
 
-def test_invalid_input(dna_spoor_seq_invalide, dna_profiel_seq_passend):
+def test_invalide_input(dna_spoor_seq_invalide, dna_profiel_seq_passend):
+    """Test de response als input DNASpoor invalide is"""
     response = client.get(
         "/dna_profiling",
         params={

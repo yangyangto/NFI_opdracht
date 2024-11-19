@@ -2,7 +2,7 @@ from app.profiling import profiel_past_in_spoor
 from app.models import DNAProfiel, DNASpoor
 
 
-def test_profiel_matches_spoor(
+def test_profiel_past_in_spoor(
     dna_spoor_seq,
     dna_profiel_seq_passend
 ):
@@ -11,7 +11,7 @@ def test_profiel_matches_spoor(
     assert profiel_past_in_spoor(dna_spoor, dna_profiel)
 
 
-def test_profiel_not_matches_spoor(
+def test_profiel_past_niet_in_spoor(
     dna_spoor_seq,
     dna_profiel_seq_niet_passend
 ):
